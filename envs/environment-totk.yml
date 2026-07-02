@@ -1,0 +1,49 @@
+name: pcd_llm
+
+channels:
+  - pytorch
+  - conda-forge
+  - defaults
+
+dependencies:
+  # Python
+  - python=3.12
+
+  # 基本ライブラリ
+  - numpy
+  - scipy
+  - matplotlib
+  - pandas
+  - scikit-learn
+  - tqdm
+
+  # Notebook
+  - jupyterlab
+  - ipykernel
+
+  # pip
+  - pip
+
+  - pip:
+      # ===== PyTorch (CUDA 12.6) =====
+      - --extra-index-url https://download.pytorch.org/whl/cu126
+      - torch
+      - torchvision
+      - torchaudio
+
+      # ===== Point Cloud =====
+      - open3d
+      - trimesh
+      - pyntcloud
+      - torch-geometric
+
+      # ===== Hugging Face =====
+      - transformers
+      - datasets
+      - accelerate
+      - peft
+      - huggingface_hub
+      - safetensors
+
+      # ===== Utilities =====
+      - tensorboard

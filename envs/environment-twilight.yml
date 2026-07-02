@@ -1,0 +1,46 @@
+name: pcd_llm
+
+channels:
+  - pytorch
+  - conda-forge
+  - defaults
+
+dependencies:
+  # Python
+  - python=3.12
+
+  # PyTorch (Apple SiliconではMPS対応版がインストールされる)
+  - pytorch
+  - torchvision
+  - torchaudio
+
+  # 基本ライブラリ
+  - numpy
+  - scipy
+  - matplotlib
+  - pandas
+  - scikit-learn
+  - tqdm
+
+  # Notebook
+  - jupyterlab
+  - ipykernel
+
+  # pipで管理するライブラリ
+  - pip
+
+  - pip:
+      - open3d
+      - trimesh
+      - pyntcloud
+
+      - transformers
+      - datasets
+      - accelerate
+      - peft
+      - huggingface_hub
+      - safetensors
+
+      - torch-geometric
+
+      - tensorboard
