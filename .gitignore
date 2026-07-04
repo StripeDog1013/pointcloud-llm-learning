@@ -231,16 +231,19 @@ __marimo__/
 
 # =========================
 
+logs/*
 data/*
 models/*
 outputs/*
 checkpoints/*
 
+*/logs/*
 */data/*
 */models/*
 */outputs/*
 */checkpoints/*
 
+!*/logs/.gitkeep
 !*/data/.gitkeep
 !*/models/.gitkeep
 !*/outputs/.gitkeep
