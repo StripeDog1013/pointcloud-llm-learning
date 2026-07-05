@@ -11,6 +11,7 @@ import torch.nn as nn
 from tqdm import tqdm
 
 from config import (
+    DATASET_TYPE,
     CHECKPOINT_DIR,
     CUDA_ID,
     NUM_CLASSES,
@@ -101,7 +102,11 @@ def main():
         use_feature_transform=True,
     ).to(device)
 
-    checkpoint_path = Path(CHECKPOINT_DIR) / "pointnet_best.pth"
+    checkpoint_path = (
+        Path(CHECKPOINT_DIR) / "pointnet_best_10.pth"
+        if DATASET_TYPE == "modelnet10"
+        else Path(CHECKPOINT_DIR) / "pointnet_best_40.pth"
+    )
 
     checkpoint = load_checkpoint(
         model=model,

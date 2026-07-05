@@ -33,8 +33,16 @@ from utils import (
 )
 
 
-DEFAULT_INPUT_PATH = "../data/raw/chair/test/chair_0890.off"
-DEFAULT_CHECKPOINT_PATH = Path(CHECKPOINT_DIR) / "pointnet_best.pth"
+DEFAULT_INPUT_PATH = (
+    "../data/ModelNet10/raw/chair/test/chair_0890.off"
+    if DATASET_TYPE == "modelnet10" 
+    else "../data/ModelNet40/raw/chair/test/chair_0890.off"
+)
+DEFAULT_CHECKPOINT_PATH = (
+    Path(CHECKPOINT_DIR) / "pointnet_best_10.pth"
+    if DATASET_TYPE == "modelnet10"
+    else Path(CHECKPOINT_DIR) / "pointnet_best_40.pth"
+)
 
 
 

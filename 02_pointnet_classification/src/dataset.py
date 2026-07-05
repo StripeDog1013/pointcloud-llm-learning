@@ -7,6 +7,7 @@ Dataset生成用エントリーポイント
 from torch.utils.data import DataLoader
 
 from config import (
+    DATASET_TYPE,
     BATCH_SIZE,
     NUM_POINTS,
     NUM_WORKERS,
@@ -31,14 +32,14 @@ def get_datasets(
     """
     if dataset_type == "modelnet10":
         train_dataset = ModelNetDataset(
-            root_dir="../data",
+            root_dir="../data/ModelNet10/",
             train=True,
             num_points=NUM_POINTS,
             name="10",
         )
 
         test_dataset = ModelNetDataset(
-            root_dir="../data",
+            root_dir="../data/ModelNet10/",
             train=False,
             num_points=NUM_POINTS,
             name="10",
@@ -46,14 +47,14 @@ def get_datasets(
 
     elif dataset_type == "modelnet40":
         train_dataset = ModelNetDataset(
-            root_dir="../data",
+            root_dir="../data/ModelNet40/",
             train=True,
             num_points=NUM_POINTS,
             name="40",
         )
 
         test_dataset = ModelNetDataset(
-            root_dir="../data",
+            root_dir="../data/ModelNet40/",
             train=False,
             num_points=NUM_POINTS,
             name="40",
@@ -110,7 +111,7 @@ def main():
     print_header("Dataset Check")
 
     train_loader, test_loader, train_dataset, test_dataset = get_dataloaders(
-        dataset_type="modelnet10"
+        dataset_type=DATASET_TYPE
     )
 
     print_subheader("Dataset")

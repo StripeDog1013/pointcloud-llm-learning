@@ -11,6 +11,7 @@ import torch.nn as nn
 import torch.optim as optim
 from tqdm import tqdm
 from config import (
+    DATASET_TYPE,
     BATCH_SIZE,
     CHECKPOINT_DIR,
     EPOCHS,
@@ -110,7 +111,7 @@ def main():
 
     print_subheader("Create DataLoader")
     train_loader, test_loader, train_dataset, test_dataset = get_dataloaders(
-        dataset_type="modelnet10"
+        dataset_type=DATASET_TYPE
     )
 
     print(f"Train samples : {len(train_dataset)}")
@@ -151,7 +152,11 @@ def main():
     print(f"Saved train params : {log_path}")
 
     best_accuracy = 0.0
-    best_checkpoint_path = Path(checkpoint_dir) / "pointnet_best.pth"
+    best_checkpoint_path = (
+        Path(checkpoint_dir) / "pointnet_best_10.pth"
+        if DATASET_TYPE == "modelnet10"
+        else Path(checkpoint_dir) / "pointnet_best_40.pth"
+    )
 
     print_subheader("Start Training")
 
