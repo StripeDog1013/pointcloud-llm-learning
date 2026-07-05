@@ -21,3 +21,6 @@ torch-geometric
 jupyterlab
 ipykernel
 tensorboard
+
+laspy
+lazrs
