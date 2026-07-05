@@ -27,7 +27,8 @@ TEST_DIR = "../data/test"
 NUM_POINTS = 1024
 
 DATASET_TYPE = "modelnet10"      # modelnet10 / modelnet40 / folder
-NUM_CLASSES = (10 
+NUM_CLASSES = (
+    10 
     if DATASET_TYPE == "modelnet10" 
     else 40
 )

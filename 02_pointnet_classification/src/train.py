@@ -141,7 +141,7 @@ def main():
         "weight_decay": WEIGHT_DECAY,
         "regularization_weight": REGULARIZATION_WEIGHT,
         "random_seed": RANDOM_SEED,
-        "dataset": "modelnet10",
+        "dataset": DATASET_TYPE,
     }
 
     log_path = save_json(
