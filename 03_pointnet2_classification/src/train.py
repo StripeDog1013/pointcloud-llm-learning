@@ -56,7 +56,7 @@ def train_one_epoch(
 
     progress_bar = tqdm(
         dataloader,
-        desc=f"Epoch [{epoch}/{EPOCHS}]",
+        desc=f"Epoch [{epoch:03d}/{EPOCHS}]",
     )
 
     for points, labels in progress_bar:
@@ -159,7 +159,7 @@ def main():
         )
 
         print(
-            f"Epoch [{epoch:03d}/{EPOCHS}] "
+            # f"Epoch [{epoch:03d}/{EPOCHS}] "
             f"Loss: {train_loss:.4f} "
             f"Accuracy: {train_accuracy:.4f}"
         )
