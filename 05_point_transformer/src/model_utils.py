@@ -23,16 +23,20 @@ def square_distance(
     return:
         (B, N, M)
     """
+    
+    # (B, N, M)
     dist = -2 * torch.matmul(
         src,
         dst.transpose(1, 2),
     )
 
+    # (B, N, 1)をブロードキャスト
     dist += torch.sum(
         src**2,
         dim=-1,
     ).unsqueeze(-1)
 
+    # (B, 1, M)をブロードキャスト
     dist += torch.sum(
         dst**2,
         dim=-1,
@@ -64,12 +68,11 @@ def index_points(
     batch_size = points.shape[0]
 
     # [B] のシーケンスを作り、[B, 1] または [B, 1, 1] に変形
-    # idx.ndim の数に応じて自動で次元を拡張します
+    # idx.ndim の数に応じて自動で次元を拡張
     view_shape = [batch_size] + [1] * (idx.ndim - 1)
     batch_indices = torch.arange(points.shape[0], device=points.device).view(view_shape)
     
-    # 高級インデックス参照（Advanced Indexing）
-    # batch_indices と idx が自動でブロードキャストされます
+    # batch_indices と idx が自動でブロードキャスト
     return points[batch_indices, idx, :]
 
 def farthest_point_sample(

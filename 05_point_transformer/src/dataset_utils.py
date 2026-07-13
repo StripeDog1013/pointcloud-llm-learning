@@ -28,21 +28,72 @@ def sample_points_numpy(
     num_points: int,
 ) -> np.ndarray:
     """
-    NumPy点群の点数をnum_pointsに揃える。
+    NumPy点群をFarthest Point Samplingでサンプリングする。
     """
+
+    return farthest_point_sample_numpy(
+        points,
+        num_points,
+    )
+
+def farthest_point_sample_numpy(
+    points: np.ndarray,
+    num_points: int,
+) -> np.ndarray:
+    """
+    NumPy版 Farthest Point Sampling
+
+    Parameters
+    ----------
+    points : (N, 3)
+
+    num_points : int
+
+    Returns
+    -------
+    (num_points, 3)
+    """
+
     if len(points) == 0:
         raise ValueError("Point cloud has no points.")
 
-    replace = len(points) < num_points
+    if num_points >= len(points):
+        return points.copy()
 
-    indices = np.random.choice(
-        len(points),
+    sampled_indices = np.zeros(
         num_points,
-        replace=replace,
+        dtype=np.int64,
     )
 
-    return points[indices]
+    distances = np.full(
+        len(points),
+        np.inf,
+    )
 
+    farthest = np.random.randint(
+        len(points),
+    )
+
+    for i in range(num_points):
+        sampled_indices[i] = farthest
+
+        centroid = points[farthest]
+
+        dist = np.sum(
+            (points - centroid) ** 2,
+            axis=1,
+        )
+
+        distances = np.minimum(
+            distances,
+            dist,
+        )
+
+        farthest = np.argmax(
+            distances,
+        )
+
+    return points[sampled_indices]
 
 def normalize_points_numpy(points: np.ndarray) -> np.ndarray:
     """

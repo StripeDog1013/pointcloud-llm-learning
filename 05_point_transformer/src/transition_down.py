@@ -131,6 +131,7 @@ class TransitionDown(nn.Module):
             local_features
         )
 
+        # Global Max pooling
         new_features = torch.max(
             local_features,
             dim=2,

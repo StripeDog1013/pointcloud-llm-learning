@@ -111,10 +111,12 @@ class ModelNetDataset(Dataset):
     
     @property
     def class_names(self):
-        if self.name == "10":
-            return MODELNET10_CLASS_NAMES
-
-        if self.name == "40":
-            return MODELNET40_CLASS_NAMES
-
-        raise ValueError(f"Unsupported ModelNet name: {self.name}")
+        mapping = {
+            "10": MODELNET10_CLASS_NAMES,
+            "40": MODELNET40_CLASS_NAMES,
+        }
+        
+        if self.name not in mapping:
+            raise ValueError(f"Unsupported ModelNet name: {self.name}")
+            
+        return mapping[self.name]

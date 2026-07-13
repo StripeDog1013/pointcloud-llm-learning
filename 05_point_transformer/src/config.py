@@ -21,7 +21,7 @@ USE_CUDA_VISIBLE_DEVICES = True
 # Dataset
 # ==============================================================================
 
-DATASET_TYPE = "modelnet40"
+DATASET_TYPE = "modelnet10"
 
 TRAIN_DIR = "../data/train"
 
